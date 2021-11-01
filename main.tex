@@ -1,0 +1,191 @@
+\documentclass[10pt]{article}
+% font setup, use Lualatex to compile!
+\usepackage{fontspec}
+\setmainfont{Arial}
+% change caption as I WANT
+\usepackage{caption}
+% add delete line
+\usepackage[normalem]{ulem}
+% allows the insertion of figures as A3 or A2 pages
+\usepackage{typearea} % DO NOT place this before the geometry package, otherwise it would overwrite the margin defined by the geometry
+\usepackage{afterpage}
+% page margin according to Word template
+\usepackage{geometry}
+\geometry{a4paper,
+          left=2cm,
+          right=2cm,
+          top=2cm,
+          bottom=2cm,
+          headsep=0.3cm,
+          footskip=0.5cm
+          }  
+          
+% set font of the section heading according to Word template
+\usepackage{sectsty}
+\sectionfont{\fontsize{12}{15}\selectfont}
+\subsectionfont{\fontsize{10}{12}\selectfont}
+
+%\setmainfont{Calibri}
+% \setmainfont[
+%  ExternalLocation=font/,
+%  BoldFont={CalibriBold}, 
+%  ItalicFont={CalibriItalic},
+%  BoldItalicFont={CalibriBoldItalic}
+%  ]{Calibri}
+% initialize image referencing
+
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+% insert pdf pages
+\usepackage{pdfpages}
+% allows really loooooonnnnngggg table
+\usepackage{longtable}
+% allows landscape figure
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{lscape}
+\usepackage{float}
+% initialize clickable references
+\usepackage[unicode]{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+% allow multirow and multicolumn in tables
+\usepackage{multirow}
+% reference styles
+\usepackage[style=ieee, natbib=true]{biblatex}
+\addbibresource{refs.bib}
+% appendices
+\usepackage{appendix}
+
+% for general testing
+\usepackage{blindtext}
+
+% scale large matrix, use \scalemath{}
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+% initialize math tools
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{empheq}
+\usepackage{arydshln}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+% define sign convention
+\makeatletter
+
+\newcommand*\curveplus{%
+  \mathbin{\rotatebox[origin=c]{90}{$\m@th\curvearrowleft$}+}}
+
+\newcommand*\rightplus{%
+  \mathpalette\@rightplus\relax}
+\newcommand*\@rightplus[1]{%
+  \mathbin{\vcenter{\hbox{$\m@th\overset{#1+}{\to}$}}}}
+
+\newcommand*\upplus{%
+  \mathbin{+\mathord\uparrow}}
+
+\makeatother
+% add indentation
+\usepackage{tocloft}
+
+% The following code defines a new command called /ind which is to be added before the first paragraph immediately following a heading. Doing so allows the indentation of the first paragraph after a heading but no indentation for the upcoming paragraphs. Also a line of space is added between paragraphs using parskip package
+%Command to indent manually
+\newlength{\oldparindent}
+\setlength{\oldparindent}{\parindent+14pt} % Save \parindent before of change, +pt adjust the length of indentation
+\newcommand{\ind}{\hspace*{\oldparindent}} 
+% add new line between paragraph and skip indentation for upcoming paragraphs
+\usepackage[parfill]{parskip}
+
+%underline
+\usepackage{soul}
+
+% allow breakpage equations
+\allowdisplaybreaks
+
+% allow pagebreak triangle to be drawn within tcolorbox
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% Code Block
+% load package with ``framed'' and ``numbered'' option.
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+% colored background
+\usepackage[most]{tcolorbox}
+% enable the initial name field
+\usepackage{calc}
+\newlength{\mylen}
+\setlength{\mylen}{\widthof{Address for Communication}}
+\newcommand{\details}[2]{%
+\makebox[\mylen][l]{#1} \,: #2 \\
+}
+
+% footer and header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% remove underline
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt}
+\rhead{MECH4620}
+\lhead{Name (zID)}
+\chead{Drag Reduction of Ahmed Body}
+\lfoot{\thepage}
+
+% check font sizes
+\makeatletter
+\newcommand\showfontsize{The current font size is: \f@size pt}
+\makeatother
+
+\begin{document}
+
+    \begin{center}
+        {\fontsize{18pt}{23pt}\textbf{Drag Reduction of Ahmed Body}} 
+        
+        \vspace{1mm}
+        
+         {\fontsize{12pt}{14pt}\textbf{Name} (zID)}
+         
+         \vspace{1mm}
+         
+         School of Mechanical Engineering,\\
+         The University of New South Wales,\\
+         Kensington, NSW 2052, Australia
+    \end{center}
+
+    \input{chapters/Abstract.tex}
+    \label{sec:Abstract}
+
+    \input{chapters/Nomenclature.tex}
+    \label{sec:Nomenclature}
+
+    \input{chapters/Introduction.tex}
+    \label{sec:Introduction}
+    
+    \input{chapters/Model_Description.tex}
+    \label{sec:Model Description}
+    
+    \input{chapters/Results.tex}
+    \label{sec:Results}
+    
+    \input{chapters/Optimization.tex}
+    \label{sec:Optimization}
+
+    \input{chapters/Conclusions.tex}
+    \label{sec:Conclusions}
+    
+    \input{chapters/Acknowledgements.tex}
+    \label{sec:Acknowledgements}
+
+    \clearpage
+    \printbibliography[heading=bibintoc, title={References}]
+
+\end{document}
